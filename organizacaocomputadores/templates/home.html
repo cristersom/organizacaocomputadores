@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container mt-3">
+    <h1 style="color:#f6613b">Organização de Computadores - Blo.co</h1>
+    <h2>A concentração dos nossos equipamentos em um só lugar!</h2>
+    <hr>
+    <table class="table">
+        <thead>
+            <tr>
+                <th><a class="titulo" href="{{ url_for('home', order_by='codigo', sort_order=next_sort_order) }}">Código {% if order_by == 'codigo' %} {% if sort_order == 'asc' %}&uarr;{% else %}&darr;{% endif %} {% endif %}</a></th>
+                <th><a class="titulo" href="{{ url_for('home', order_by='modelo', sort_order=next_sort_order) }}">Modelo {% if order_by == 'modelo' %} {% if sort_order == 'asc' %}&uarr;{% else %}&darr;{% endif %} {% endif %}</a></th>
+                <th><a class="titulo" href="{{ url_for('home', order_by='ano', sort_order=next_sort_order) }}">Ano {% if order_by == 'ano' %} {% if sort_order == 'asc' %}&uarr;{% else %}&darr;{% endif %} {% endif %}</a></th>
+                <th><a class="titulo" href="{{ url_for('home', order_by='username', sort_order=next_sort_order) }}">Usuário {% if order_by == 'username' %} {% if sort_order == 'asc' %}&uarr;{% else %}&darr;{% endif %} {% endif %}</a></th>
+                <th><a class="titulo" href="{{ url_for('home', order_by='sede', sort_order=next_sort_order) }}">Sede {% if order_by == 'sede' %} {% if sort_order == 'asc' %}&uarr;{% else %}&darr;{% endif %} {% endif %}</a></th>
+                <th><a class="titulo" href="{{ url_for('home', order_by='status', sort_order=next_sort_order) }}">Status {% if order_by == 'status' %} {% if sort_order == 'asc' %}&uarr;{% else %}&darr;{% endif %} {% endif %}</a></th>
+                <th><a class="titulo" href="{{ url_for('home', order_by='serial', sort_order=next_sort_order) }}">Serial {% if order_by == 'serial' %} {% if sort_order == 'asc' %}&uarr;{% else %}&darr;{% endif %} {% endif %}</a></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for computador in computadores %}
+<tr>
+    <td class="{% if computador.status == 'Livre' %}livre{% elif computador.status == 'Ativo' %}ativo{% elif computador.status == 'Manutenção' %}manutencao{% elif computador.status == 'Alterado' %}alterado{% elif computador.status == 'Desativado' %}desativado{% endif %}"><a class="decoration titulo" href="{{ url_for('exibir_computador', computador_id=computador.id) }}">{{ computador.codigo }}</a></td>
+    <td class="{% if computador.status == 'Livre' %}livre{% elif computador.status == 'Ativo' %}ativo{% elif computador.status == 'Manutenção' %}manutencao{% elif computador.status == 'Alterado' %}alterado{% elif computador.status == 'Desativado' %}desativado{% endif %}">{{ computador.modelo }}</td>
+    <td class="{% if computador.status == 'Livre' %}livre{% elif computador.status == 'Ativo' %}ativo{% elif computador.status == 'Manutenção' %}manutencao{% elif computador.status == 'Alterado' %}alterado{% elif computador.status == 'Desativado' %}desativado{% endif %}">{{ computador.ano }}</td>
+    <td class="{% if computador.status == 'Livre' %}livre{% elif computador.status == 'Ativo' %}ativo{% elif computador.status == 'Manutenção' %}manutencao{% elif computador.status == 'Alterado' %}alterado{% elif computador.status == 'Desativado' %}desativado{% endif %}">{{ computador.username }}</td>
+    <td class="{% if computador.status == 'Livre' %}livre{% elif computador.status == 'Ativo' %}ativo{% elif computador.status == 'Manutenção' %}manutencao{% elif computador.status == 'Alterado' %}alterado{% elif computador.status == 'Desativado' %}desativado{% endif %}">{{ computador.sede }}</td>
+    <td class="{% if computador.status == 'Livre' %}livre{% elif computador.status == 'Ativo' %}ativo{% elif computador.status == 'Manutenção' %}manutencao{% elif computador.status == 'Alterado' %}alterado{% elif computador.status == 'Desativado' %}desativado{% endif %}">{{ computador.status }}</td>
+    <td class="{% if computador.status == 'Livre' %}livre{% elif computador.status == 'Ativo' %}ativo{% elif computador.status == 'Manutenção' %}manutencao{% elif computador.status == 'Alterado' %}alterado{% elif computador.status == 'Desativado' %}desativado{% endif %}">{{ computador.serial }}</td>
+
+</tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

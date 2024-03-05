@@ -1,0 +1,154 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container mt-3">
+    <table class="table">
+        <thead>
+            <tr>
+                <th><a class="titulo" href="{{ url_for('home', order_by='codigo', sort_order=next_sort_order) }}">Código {% if order_by == 'codigo' %} {% if sort_order == 'asc' %}&uarr;{% else %}&darr;{% endif %} {% endif %}</a></th>
+                <th><a class="titulo" href="{{ url_for('home', order_by='modelo', sort_order=next_sort_order) }}">Modelo {% if order_by == 'modelo' %} {% if sort_order == 'asc' %}&uarr;{% else %}&darr;{% endif %} {% endif %}</a></th>
+                <th><a class="titulo" href="{{ url_for('home', order_by='ano', sort_order=next_sort_order) }}">Ano {% if order_by == 'ano' %} {% if sort_order == 'asc' %}&uarr;{% else %}&darr;{% endif %} {% endif %}</a></th>
+                <th><a class="titulo" href="{{ url_for('home', order_by='username', sort_order=next_sort_order) }}">Usuário {% if order_by == 'username' %} {% if sort_order == 'asc' %}&uarr;{% else %}&darr;{% endif %} {% endif %}</a></th>
+                <th><a class="titulo" href="{{ url_for('home', order_by='sede', sort_order=next_sort_order) }}">Sede {% if order_by == 'sede' %} {% if sort_order == 'asc' %}&uarr;{% else %}&darr;{% endif %} {% endif %}</a></th>
+                <th><a class="titulo" href="{{ url_for('home', order_by='status', sort_order=next_sort_order) }}">Status {% if order_by == 'status' %} {% if sort_order == 'asc' %}&uarr;{% else %}&darr;{% endif %} {% endif %}</a></th>
+                <th><a class="titulo" href="{{ url_for('home', order_by='serial', sort_order=next_sort_order) }}">Serial {% if order_by == 'serial' %} {% if sort_order == 'asc' %}&uarr;{% else %}&darr;{% endif %} {% endif %}</a></th>
+
+            </tr>
+        </thead>
+        <tbody>
+<tr>
+    <td class="{% if computador.status == 'Livre' %}livre{% elif computador.status == 'Ativo' %}ativo{% endif %}">{{ computador.codigo }}</td>
+    <td class="{% if computador.status == 'Livre' %}livre{% elif computador.status == 'Ativo' %}ativo{% endif %}">{{ computador.modelo }}</td>
+    <td class="{% if computador.status == 'Livre' %}livre{% elif computador.status == 'Ativo' %}ativo{% endif %}">{{ computador.ano }}</td>
+    <td class="{% if computador.status == 'Livre' %}livre{% elif computador.status == 'Ativo' %}ativo{% endif %}">{{ computador.username }}</td>
+    <td class="{% if computador.status == 'Livre' %}livre{% elif computador.status == 'Ativo' %}ativo{% endif %}">{{ computador.sede }}</td>
+    <td class="{% if computador.status == 'Livre' %}livre{% elif computador.status == 'Ativo' %}ativo{% endif %}">{{ computador.status }}</td>
+    <td class="{% if computador.status == 'Livre' %}livre{% elif computador.status == 'Ativo' %}ativo{% endif %}">{{ computador.serial }}</td>
+
+</tr>
+        </tbody>
+    </table>
+</div>
+
+{% if form %}
+<div class="container">
+    <h1>Cadastro
+              <small class="text-muted data"> - Data de criação: {{ computador.data_criacao.strftime('%d/%m/%Y') }}
+                    {% if form %}
+                        - <a href="#form_editarcomputador">Editar Computador</a> / <a href="" class="text-danger" data-bs-toggle="modal" data-bs-target="#ExcluirComputador">Excluir computador</a>
+                    {% endif %}
+                </small>
+    </h1>
+        <div class="col">
+            <form method="POST" id="form_editarcomputador" action="" class="border p-4 mt-2">
+                {{ form.csrf_token }}
+                <legend>Editar Computador</legend>
+                <fieldset>
+                    <div class="form-group">
+                        {{ form.codigo.label (class="form-control-label")}}
+                          {% if form.codigo.errors %}
+                            {{ form.codigo (class="form-control is-invalid")}}
+                        <div class="invalid-feedback">
+                            {% for erro in form.codigo.errors %}
+                                {{ erro }}
+                            {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.codigo (class="form-control")}}
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        {{ form.modelo.label (class="form-control-label")}}
+                        {% if form.modelo.errors %}
+                            {{ form.modelo (class="form-control is-invalid")}}
+                        <div class="invalid-feedback">
+                            {% for erro in form.modelo.errors %}
+                                {{ erro }}
+                            {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.modelo (class="form-control")}}
+                        {% endif %}
+                    </div>
+                     <div class="form-group">
+                        {{ form.ano.label (class="form-control-label")}}
+                        {% if form.ano.errors %}
+                            {{ form.ano (class="form-control is-invalid")}}
+                        <div class="invalid-feedback">
+                            {% for erro in form.ano.errors %}
+                                {{ erro }}
+                            {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.ano (class="form-control")}}
+                        {% endif %}
+                    </div>
+                     <div class="form-group">
+                        {{ form.status.label (class="form-control-label")}}
+                        {% if form.status.errors %}
+                            {{ form.status (class="form-control is-invalid")}}
+                        <div class="invalid-feedback">
+                            {% for erro in form.status.errors %}
+                                {{ erro }}
+                            {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.status (class="form-control")}}
+                        {% endif %}
+                    </div>
+                     <div class="form-group">
+                        {{ form.username.label (class="form-control-label")}}
+                          {% if form.username.errors %}
+                            {{ form.username (class="form-control is-invalid")}}
+                        <div class="invalid-feedback">
+                            {% for erro in form.username.errors %}
+                                {{ erro }}
+                            {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.username (class="form-control")}}
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        {{ form.sede.label (class="form-control-label")}}
+                          {% if form.sede.errors %}
+                            {{ form.sede (class="form-control is-invalid")}}
+                        <div class="invalid-feedback">
+                            {% for erro in form.sede.errors %}
+                                {{ erro }}
+                            {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.sede (class="form-control")}}
+                        {% endif %}
+                    </div>
+
+                    {{ form.botao_submit_editarcomputador (class="btn btn-primary mt-2")}}
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<!-- Modal -->
+<div class="modal fade" id="ExcluirComputador" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Excluir Computador</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Você quer realmente excluir esse computador? (Essa ação não pode ser desfeita)
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <form method="POST" action="{{ url_for('excluir_computador', computador_id=computador.id) }}">
+        <button type="submit" class="btn btn-danger">Excluir Computador</button>
+          </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

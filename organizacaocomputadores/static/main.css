@@ -1,0 +1,78 @@
+.card {
+    width: 400px;
+    border: none;
+    border-radius: 10px;
+    background-color: #fff
+}
+
+.stats {
+    background: #f2f5f8 !important;
+    color: #000 !important
+}
+
+.articles {
+    font-size: 10px;
+    color: #a1aab9
+}
+
+.number1 {
+    font-weight: 500
+}
+
+.followers {
+    font-size: 10px;
+    color: #a1aab9
+}
+
+.number2 {
+    font-weight: 500
+}
+
+.rating {
+    font-size: 10px;
+    color: #a1aab9
+}
+
+.number3 {
+    font-weight: 500
+}
+
+.meupost{
+    background: #f2f5f8 !important;
+}
+
+.ativo{
+    background: #f2f5f8 !important;
+}
+.livre{
+    background: #6aa84f !important;
+}
+.manutencao{
+    background: #Cc4125 !important;
+}
+
+.alterado{
+background: #d9d9d9 !important;
+text-decoration: line-through;
+}
+
+.desativado{
+background: #cccccc !important;
+text-decoration: line-through;
+}
+
+.titulo{
+color:#6287e7
+}
+
+.logo{
+width:50px;
+}
+
+.decoration{
+text-decoration:none
+}
+
+.data{
+font-size:15px
+}
